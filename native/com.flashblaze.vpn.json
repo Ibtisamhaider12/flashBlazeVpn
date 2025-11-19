@@ -1,0 +1,10 @@
+{
+  "name": "com.flashblaze.vpn",
+  "description": "FlashBlaze VPN Native Messaging Host",
+  "path": "vpn_host",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://YOUR_EXTENSION_ID_HERE/"
+  ]
+}
+
