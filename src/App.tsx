@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CountrySelector from './components/CountrySelector';
 import ConnectionStatus from './components/ConnectionStatus';
 import { getCountries, connectVPN, disconnectVPN, getConnectionStatus } from './utils/vpnService';
+import { safeStateUpdate, safeAsync, normalizeError } from './utils/errorHandler';
 import type { Country, ConnectionStatus as ConnStatus } from './types';
 
 const App: React.FC = () => {
@@ -11,96 +12,173 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadCountries();
-    
-    // Periodically check connection status to keep UI in sync
-    const statusInterval = setInterval(() => {
-      checkConnectionStatus();
-    }, 10000); // Check every 10 seconds
-    
-    return () => {
-      clearInterval(statusInterval);
-    };
+    try {
+      loadCountries();
+      
+      // Periodically check connection status to keep UI in sync
+      const statusInterval = setInterval(() => {
+        try {
+          checkConnectionStatus();
+        } catch (error) {
+          console.error('Error in status check interval:', error);
+        }
+      }, 10000); // Check every 10 seconds
+      
+      return () => {
+        try {
+          clearInterval(statusInterval);
+        } catch (error) {
+          console.error('Error clearing interval:', error);
+        }
+      };
+    } catch (error) {
+      console.error('Error in useEffect:', error);
+      setLoading(false);
+    }
   }, []);
 
   // Separate effect to check connection status after countries are loaded
   useEffect(() => {
-    if (countries.length > 0) {
-      checkConnectionStatus();
+    try {
+      if (Array.isArray(countries) && countries.length > 0) {
+        checkConnectionStatus();
+      }
+    } catch (error) {
+      console.error('Error in countries length effect:', error);
     }
   }, [countries.length]);
 
   const loadCountries = async () => {
     try {
-      const countryList = await getCountries();
-      setCountries(countryList);
-      // Check connection status after countries are loaded
-      const status = await getConnectionStatus();
-      setConnectionStatus(status.status);
-      if (status.country && countryList.length > 0) {
-        const country = countryList.find(c => c.code === status.country);
-        if (country) setSelectedCountry(country);
+      const countryList = await safeAsync(
+        () => getCountries(),
+        [],
+        (error) => console.error('Failed to load countries:', error)
+      );
+      
+      if (Array.isArray(countryList) && countryList.length > 0) {
+        safeStateUpdate(setCountries, countryList);
+        
+        // Check connection status after countries are loaded
+        const status = await safeAsync(
+          () => getConnectionStatus(),
+          { status: 'disconnected' as ConnStatus, country: null, proxy: null },
+          (error) => console.warn('Error getting connection status:', error)
+        );
+        
+        if (status && typeof status === 'object') {
+          safeStateUpdate(setConnectionStatus, status.status || 'disconnected');
+          
+          if (status.country && countryList.length > 0) {
+            try {
+              const country = countryList.find(c => c && c && typeof c === 'object' && c.code === status.country);
+              if (country) {
+                safeStateUpdate(setSelectedCountry, country);
+              }
+            } catch (e) {
+              console.warn('Error finding country:', normalizeError(e));
+            }
+          }
+        }
+      } else {
+        console.warn('Invalid or empty countries list received');
+        safeStateUpdate(setCountries, []);
       }
     } catch (error) {
-      console.error('Failed to load countries:', error);
+      console.error('Failed to load countries:', normalizeError(error));
+      safeStateUpdate(setCountries, []);
     } finally {
-      setLoading(false);
+      safeStateUpdate(setLoading, false);
     }
   };
 
   const checkConnectionStatus = async () => {
     try {
-      const status = await getConnectionStatus();
-      setConnectionStatus(status.status);
-      if (status.country && countries.length > 0) {
-        const country = countries.find(c => c.code === status.country);
-        if (country) {
-          setSelectedCountry(country);
-        } else {
-          // Country not found in current list, clear selection
-          setSelectedCountry(null);
+      const status = await safeAsync(
+        () => getConnectionStatus(),
+        { status: 'disconnected' as ConnStatus, country: null, proxy: null },
+        (error) => console.error('Failed to check connection status:', error)
+      );
+      
+      if (status && typeof status === 'object') {
+        safeStateUpdate(setConnectionStatus, status.status || 'disconnected');
+        
+        if (status.country && Array.isArray(countries) && countries.length > 0) {
+          try {
+            const country = countries.find(c => c && typeof c === 'object' && c.code === status.country);
+            if (country) {
+              safeStateUpdate(setSelectedCountry, country);
+            } else {
+              safeStateUpdate(setSelectedCountry, null);
+            }
+          } catch (e) {
+            console.warn('Error finding country in checkConnectionStatus:', normalizeError(e));
+            safeStateUpdate(setSelectedCountry, null);
+          }
+        } else if (!status.country) {
+          safeStateUpdate(setSelectedCountry, null);
         }
-      } else if (!status.country) {
-        setSelectedCountry(null);
       }
     } catch (error) {
-      console.error('Failed to check connection status:', error);
+      // Error already logged by safeAsync
       // Don't update state on error to avoid UI flicker
     }
   };
 
   const handleConnect = async (country: Country) => {
-    if (!country || !country.code) {
-      console.error('Invalid country provided');
-      return;
-    }
-    
     try {
-      setConnectionStatus('connecting');
-      await connectVPN(country);
-      setSelectedCountry(country);
-      setConnectionStatus('connected');
+      if (!country || typeof country !== 'object' || !country.code) {
+        console.error('Invalid country provided');
+        return;
+      }
+      
+      safeStateUpdate(setConnectionStatus, 'connecting');
+      
+      const result = await safeAsync(
+        () => connectVPN(country),
+        undefined,
+        (error) => {
+          console.error('Failed to connect:', error);
+          safeStateUpdate(setConnectionStatus, 'disconnected');
+          
+          // Use setTimeout to avoid blocking the UI thread
+          setTimeout(() => {
+            try {
+              alert(`Failed to connect: ${error.message}. Please check the native host is installed.`);
+            } catch (e) {
+              console.error('Error showing alert:', normalizeError(e));
+            }
+          }, 0);
+        }
+      );
+      
+      if (result !== undefined) {
+        safeStateUpdate(setSelectedCountry, country);
+        safeStateUpdate(setConnectionStatus, 'connected');
+      }
     } catch (error) {
-      console.error('Failed to connect:', error);
-      setConnectionStatus('disconnected');
-      // Use setTimeout to avoid blocking the UI thread
-      setTimeout(() => {
-        alert('Failed to connect. Please check the native host is installed.');
-      }, 0);
+      console.error('Error in handleConnect:', normalizeError(error));
+      safeStateUpdate(setConnectionStatus, 'disconnected');
     }
   };
 
   const handleDisconnect = async () => {
     try {
-      setConnectionStatus('disconnecting');
-      await disconnectVPN();
-      setSelectedCountry(null);
-      setConnectionStatus('disconnected');
-    } catch (error) {
-      console.error('Failed to disconnect:', error);
+      safeStateUpdate(setConnectionStatus, 'disconnecting');
+      
+      await safeAsync(
+        () => disconnectVPN(),
+        undefined,
+        (error) => console.error('Failed to disconnect:', error)
+      );
+      
       // Always set to disconnected even on error
-      setConnectionStatus('disconnected');
-      setSelectedCountry(null);
+      safeStateUpdate(setSelectedCountry, null);
+      safeStateUpdate(setConnectionStatus, 'disconnected');
+    } catch (error) {
+      console.error('Error in handleDisconnect:', normalizeError(error));
+      safeStateUpdate(setConnectionStatus, 'disconnected');
+      safeStateUpdate(setSelectedCountry, null);
     }
   };
 
@@ -113,34 +191,53 @@ const App: React.FC = () => {
     );
   }
 
-  return (
-    <div className="app">
-      <header className="app-header">
-        <h1>FlashBlaze VPN</h1>
-        <ConnectionStatus 
-          status={connectionStatus}
-          country={selectedCountry}
-        />
-      </header>
-      <main className="app-main">
-        <CountrySelector
-          countries={countries}
-          selectedCountry={selectedCountry}
-          onSelect={handleConnect}
-          disabled={connectionStatus === 'connecting' || connectionStatus === 'disconnecting'}
-        />
-        {connectionStatus === 'connected' && (
-          <button 
-            className="btn-disconnect"
-            onClick={handleDisconnect}
-            disabled={connectionStatus === 'disconnecting'}
-          >
-            Disconnect
-          </button>
-        )}
-      </main>
-    </div>
-  );
+  try {
+    return (
+      <div className="app">
+        <header className="app-header">
+          <h1>FlashBlaze VPN</h1>
+          <ConnectionStatus 
+            status={connectionStatus}
+            country={selectedCountry}
+          />
+        </header>
+        <main className="app-main">
+          <CountrySelector
+            countries={Array.isArray(countries) ? countries : []}
+            selectedCountry={selectedCountry}
+            onSelect={handleConnect}
+            disabled={connectionStatus === 'connecting' || connectionStatus === 'disconnecting'}
+          />
+          {connectionStatus === 'connected' && (
+            <button 
+              className="btn-disconnect"
+              onClick={handleDisconnect}
+              disabled={connectionStatus === 'disconnecting'}
+            >
+              Disconnect
+            </button>
+          )}
+        </main>
+      </div>
+    );
+  } catch (error) {
+    console.error('Error rendering App:', error);
+    return (
+      <div className="app">
+        <header className="app-header">
+          <h1>FlashBlaze VPN</h1>
+        </header>
+        <main className="app-main">
+          <div style={{ padding: '20px', textAlign: 'center' }}>
+            <p>An error occurred. Please reload the extension.</p>
+            <button onClick={() => window.location.reload()}>
+              Reload
+            </button>
+          </div>
+        </main>
+      </div>
+    );
+  }
 };
 
 export default App;

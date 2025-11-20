@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { normalizeError } from '../utils/errorHandler';
 
 interface Props {
   children: ReactNode;
@@ -17,51 +18,27 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: unknown): State {
-    // Normalize error to ensure it's always an Error object
-    let normalizedError: Error;
-    
-    if (error instanceof Error) {
-      normalizedError = error;
-    } else if (typeof error === 'string') {
-      normalizedError = new Error(error);
-    } else if (error && typeof error === 'object' && 'message' in error) {
-      normalizedError = new Error(String(error.message));
-    } else {
-      normalizedError = new Error('An unknown error occurred');
-    }
-    
+    // Use the centralized error normalization
+    const normalizedError = normalizeError(error);
     return { hasError: true, error: normalizedError, errorInfo: null };
   }
 
   componentDidCatch(error: unknown, errorInfo: ErrorInfo) {
-    // Normalize error to ensure it's always an Error object
-    let safeError: Error;
-    
-    if (error instanceof Error) {
-      safeError = error;
-    } else if (typeof error === 'string') {
-      safeError = new Error(error);
-    } else if (error && typeof error === 'object' && 'message' in error) {
-      safeError = new Error(String(error.message));
-    } else {
-      safeError = new Error('An unknown error occurred');
-    }
-    
-    // Ensure error has a stack trace
-    if (!safeError.stack) {
-      try {
-        throw safeError;
-      } catch (e) {
-        // Stack trace will be generated
-      }
-    }
+    // Use the centralized error normalization
+    const safeError = normalizeError(error);
     
     console.error('ErrorBoundary caught an error:', safeError, errorInfo);
     
-    this.setState({
-      error: safeError,
-      errorInfo: errorInfo
-    });
+    // Safe state update
+    try {
+      this.setState({
+        error: safeError,
+        errorInfo: errorInfo
+      });
+    } catch (setStateError) {
+      // Even setState can fail, so we catch it
+      console.error('Error setting state in ErrorBoundary:', normalizeError(setStateError));
+    }
   }
 
   private handleReload = () => {
