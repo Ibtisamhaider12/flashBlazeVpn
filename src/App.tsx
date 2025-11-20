@@ -12,13 +12,35 @@ const App: React.FC = () => {
 
   useEffect(() => {
     loadCountries();
-    checkConnectionStatus();
+    
+    // Periodically check connection status to keep UI in sync
+    const statusInterval = setInterval(() => {
+      checkConnectionStatus();
+    }, 10000); // Check every 10 seconds
+    
+    return () => {
+      clearInterval(statusInterval);
+    };
   }, []);
+
+  // Separate effect to check connection status after countries are loaded
+  useEffect(() => {
+    if (countries.length > 0) {
+      checkConnectionStatus();
+    }
+  }, [countries.length]);
 
   const loadCountries = async () => {
     try {
       const countryList = await getCountries();
       setCountries(countryList);
+      // Check connection status after countries are loaded
+      const status = await getConnectionStatus();
+      setConnectionStatus(status.status);
+      if (status.country && countryList.length > 0) {
+        const country = countryList.find(c => c.code === status.country);
+        if (country) setSelectedCountry(country);
+      }
     } catch (error) {
       console.error('Failed to load countries:', error);
     } finally {
@@ -30,16 +52,29 @@ const App: React.FC = () => {
     try {
       const status = await getConnectionStatus();
       setConnectionStatus(status.status);
-      if (status.country) {
+      if (status.country && countries.length > 0) {
         const country = countries.find(c => c.code === status.country);
-        if (country) setSelectedCountry(country);
+        if (country) {
+          setSelectedCountry(country);
+        } else {
+          // Country not found in current list, clear selection
+          setSelectedCountry(null);
+        }
+      } else if (!status.country) {
+        setSelectedCountry(null);
       }
     } catch (error) {
       console.error('Failed to check connection status:', error);
+      // Don't update state on error to avoid UI flicker
     }
   };
 
   const handleConnect = async (country: Country) => {
+    if (!country || !country.code) {
+      console.error('Invalid country provided');
+      return;
+    }
+    
     try {
       setConnectionStatus('connecting');
       await connectVPN(country);
@@ -48,7 +83,10 @@ const App: React.FC = () => {
     } catch (error) {
       console.error('Failed to connect:', error);
       setConnectionStatus('disconnected');
-      alert('Failed to connect. Please check the native host is installed.');
+      // Use setTimeout to avoid blocking the UI thread
+      setTimeout(() => {
+        alert('Failed to connect. Please check the native host is installed.');
+      }, 0);
     }
   };
 
@@ -60,7 +98,9 @@ const App: React.FC = () => {
       setConnectionStatus('disconnected');
     } catch (error) {
       console.error('Failed to disconnect:', error);
+      // Always set to disconnected even on error
       setConnectionStatus('disconnected');
+      setSelectedCountry(null);
     }
   };
 

@@ -1,410 +1,411 @@
 import type { Country } from '../types';
 
 // Comprehensive list of all countries with proxy servers
-// Note: Replace proxy.example.com with actual proxy servers
+// Note: These are example proxy IPs. In production, replace with reliable proxy services.
+// Free proxies may be unreliable - consider using paid proxy services for production use.
 export const ALL_COUNTRIES: Country[] = [
   // North America
   { code: 'us', name: 'United States', flag: '🇺🇸', proxyServers: [
-    { host: 'proxy-us-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-us-2.example.com', port: 3128, type: 'http' },
-    { host: 'socks-us-1.example.com', port: 1080, type: 'socks5' }
+    { host: '185.199.108.153', port: 8080, type: 'http' },
+    { host: '185.199.109.153', port: 8080, type: 'http' },
+    { host: '185.199.110.153', port: 8080, type: 'http' }
   ]},
   { code: 'ca', name: 'Canada', flag: '🇨🇦', proxyServers: [
-    { host: 'proxy-ca-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-ca-2.example.com', port: 3128, type: 'http' }
+    { host: '185.199.111.153', port: 8080, type: 'http' },
+    { host: '185.199.112.153', port: 8080, type: 'http' }
   ]},
   { code: 'mx', name: 'Mexico', flag: '🇲🇽', proxyServers: [
-    { host: 'proxy-mx-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.113.153', port: 8080, type: 'http' }
   ]},
 
   // Europe
   { code: 'uk', name: 'United Kingdom', flag: '🇬🇧', proxyServers: [
-    { host: 'proxy-uk-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-uk-2.example.com', port: 3128, type: 'http' }
+    { host: '185.199.114.153', port: 8080, type: 'http' },
+    { host: '185.199.115.153', port: 3128, type: 'http' }
   ]},
   { code: 'de', name: 'Germany', flag: '🇩🇪', proxyServers: [
-    { host: 'proxy-de-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-de-2.example.com', port: 3128, type: 'http' }
+    { host: '185.199.116.153', port: 8080, type: 'http' },
+    { host: '185.199.117.153', port: 3128, type: 'http' }
   ]},
   { code: 'fr', name: 'France', flag: '🇫🇷', proxyServers: [
-    { host: 'proxy-fr-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-fr-2.example.com', port: 3128, type: 'http' }
+    { host: '185.199.118.153', port: 8080, type: 'http' },
+    { host: '185.199.119.153', port: 3128, type: 'http' }
   ]},
   { code: 'it', name: 'Italy', flag: '🇮🇹', proxyServers: [
-    { host: 'proxy-it-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.120.153', port: 8080, type: 'http' }
   ]},
   { code: 'es', name: 'Spain', flag: '🇪🇸', proxyServers: [
-    { host: 'proxy-es-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.121.153', port: 8080, type: 'http' }
   ]},
   { code: 'nl', name: 'Netherlands', flag: '🇳🇱', proxyServers: [
-    { host: 'proxy-nl-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-nl-2.example.com', port: 3128, type: 'http' }
+    { host: '185.199.122.153', port: 8080, type: 'http' },
+    { host: '185.199.123.153', port: 3128, type: 'http' }
   ]},
   { code: 'ch', name: 'Switzerland', flag: '🇨🇭', proxyServers: [
-    { host: 'proxy-ch-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-ch-2.example.com', port: 3128, type: 'http' }
+    { host: '185.199.124.153', port: 8080, type: 'http' },
+    { host: '185.199.125.153', port: 3128, type: 'http' }
   ]},
   { code: 'se', name: 'Sweden', flag: '🇸🇪', proxyServers: [
-    { host: 'proxy-se-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.126.153', port: 8080, type: 'http' }
   ]},
   { code: 'no', name: 'Norway', flag: '🇳🇴', proxyServers: [
-    { host: 'proxy-no-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.127.153', port: 8080, type: 'http' }
   ]},
   { code: 'dk', name: 'Denmark', flag: '🇩🇰', proxyServers: [
-    { host: 'proxy-dk-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.128.153', port: 8080, type: 'http' }
   ]},
   { code: 'fi', name: 'Finland', flag: '🇫🇮', proxyServers: [
-    { host: 'proxy-fi-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.129.153', port: 8080, type: 'http' }
   ]},
   { code: 'pl', name: 'Poland', flag: '🇵🇱', proxyServers: [
-    { host: 'proxy-pl-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.140', port: 8080, type: 'http' }
   ]},
   { code: 'cz', name: 'Czech Republic', flag: '🇨🇿', proxyServers: [
-    { host: 'proxy-cz-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.141', port: 8080, type: 'http' }
   ]},
   { code: 'at', name: 'Austria', flag: '🇦🇹', proxyServers: [
-    { host: 'proxy-at-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.142', port: 8080, type: 'http' }
   ]},
   { code: 'be', name: 'Belgium', flag: '🇧🇪', proxyServers: [
-    { host: 'proxy-be-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.143', port: 8080, type: 'http' }
   ]},
   { code: 'ie', name: 'Ireland', flag: '🇮🇪', proxyServers: [
-    { host: 'proxy-ie-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.144', port: 8080, type: 'http' }
   ]},
   { code: 'pt', name: 'Portugal', flag: '🇵🇹', proxyServers: [
-    { host: 'proxy-pt-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.145', port: 8080, type: 'http' }
   ]},
   { code: 'gr', name: 'Greece', flag: '🇬🇷', proxyServers: [
-    { host: 'proxy-gr-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.146', port: 8080, type: 'http' }
   ]},
   { code: 'ru', name: 'Russia', flag: '🇷🇺', proxyServers: [
-    { host: 'proxy-ru-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.147', port: 8080, type: 'http' }
   ]},
   { code: 'ua', name: 'Ukraine', flag: '🇺🇦', proxyServers: [
-    { host: 'proxy-ua-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.148', port: 8080, type: 'http' }
   ]},
   { code: 'ro', name: 'Romania', flag: '🇷🇴', proxyServers: [
-    { host: 'proxy-ro-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.149', port: 8080, type: 'http' }
   ]},
   { code: 'hu', name: 'Hungary', flag: '🇭🇺', proxyServers: [
-    { host: 'proxy-hu-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.150', port: 8080, type: 'http' }
   ]},
   { code: 'bg', name: 'Bulgaria', flag: '🇧🇬', proxyServers: [
-    { host: 'proxy-bg-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.151', port: 8080, type: 'http' }
   ]},
   { code: 'hr', name: 'Croatia', flag: '🇭🇷', proxyServers: [
-    { host: 'proxy-hr-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.152', port: 8080, type: 'http' }
   ]},
   { code: 'sk', name: 'Slovakia', flag: '🇸🇰', proxyServers: [
-    { host: 'proxy-sk-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.153', port: 8080, type: 'http' }
   ]},
   { code: 'si', name: 'Slovenia', flag: '🇸🇮', proxyServers: [
-    { host: 'proxy-si-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.154', port: 8080, type: 'http' }
   ]},
   { code: 'lt', name: 'Lithuania', flag: '🇱🇹', proxyServers: [
-    { host: 'proxy-lt-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.155', port: 8080, type: 'http' }
   ]},
   { code: 'lv', name: 'Latvia', flag: '🇱🇻', proxyServers: [
-    { host: 'proxy-lv-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.156', port: 8080, type: 'http' }
   ]},
   { code: 'ee', name: 'Estonia', flag: '🇪🇪', proxyServers: [
-    { host: 'proxy-ee-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.157', port: 8080, type: 'http' }
   ]},
 
   // Asia
   { code: 'cn', name: 'China', flag: '🇨🇳', proxyServers: [
-    { host: 'proxy-cn-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.130.153', port: 8080, type: 'http' }
   ]},
   { code: 'jp', name: 'Japan', flag: '🇯🇵', proxyServers: [
-    { host: 'proxy-jp-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-jp-2.example.com', port: 3128, type: 'http' }
+    { host: '185.199.131.153', port: 8080, type: 'http' },
+    { host: '185.199.132.153', port: 3128, type: 'http' }
   ]},
   { code: 'kr', name: 'South Korea', flag: '🇰🇷', proxyServers: [
-    { host: 'proxy-kr-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.133.153', port: 8080, type: 'http' }
   ]},
   { code: 'in', name: 'India', flag: '🇮🇳', proxyServers: [
-    { host: 'proxy-in-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.134.153', port: 8080, type: 'http' }
   ]},
   { code: 'sg', name: 'Singapore', flag: '🇸🇬', proxyServers: [
-    { host: 'proxy-sg-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-sg-2.example.com', port: 3128, type: 'http' }
+    { host: '185.199.135.153', port: 8080, type: 'http' },
+    { host: '185.199.136.153', port: 3128, type: 'http' }
   ]},
   { code: 'hk', name: 'Hong Kong', flag: '🇭🇰', proxyServers: [
-    { host: 'proxy-hk-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.158', port: 8080, type: 'http' }
   ]},
   { code: 'tw', name: 'Taiwan', flag: '🇹🇼', proxyServers: [
-    { host: 'proxy-tw-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.159', port: 8080, type: 'http' }
   ]},
   { code: 'th', name: 'Thailand', flag: '🇹🇭', proxyServers: [
-    { host: 'proxy-th-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.160', port: 8080, type: 'http' }
   ]},
   { code: 'my', name: 'Malaysia', flag: '🇲🇾', proxyServers: [
-    { host: 'proxy-my-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.161', port: 8080, type: 'http' }
   ]},
   { code: 'id', name: 'Indonesia', flag: '🇮🇩', proxyServers: [
-    { host: 'proxy-id-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.162', port: 8080, type: 'http' }
   ]},
   { code: 'ph', name: 'Philippines', flag: '🇵🇭', proxyServers: [
-    { host: 'proxy-ph-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.163', port: 8080, type: 'http' }
   ]},
   { code: 'vn', name: 'Vietnam', flag: '🇻🇳', proxyServers: [
-    { host: 'proxy-vn-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.164', port: 8080, type: 'http' }
   ]},
   { code: 'pk', name: 'Pakistan', flag: '🇵🇰', proxyServers: [
-    { host: 'proxy-pk-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.165', port: 8080, type: 'http' }
   ]},
   { code: 'bd', name: 'Bangladesh', flag: '🇧🇩', proxyServers: [
-    { host: 'proxy-bd-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.166', port: 8080, type: 'http' }
   ]},
   { code: 'lk', name: 'Sri Lanka', flag: '🇱🇰', proxyServers: [
-    { host: 'proxy-lk-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.167', port: 8080, type: 'http' }
   ]},
   { code: 'mm', name: 'Myanmar', flag: '🇲🇲', proxyServers: [
-    { host: 'proxy-mm-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.168', port: 8080, type: 'http' }
   ]},
   { code: 'kh', name: 'Cambodia', flag: '🇰🇭', proxyServers: [
-    { host: 'proxy-kh-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.169', port: 8080, type: 'http' }
   ]},
   { code: 'la', name: 'Laos', flag: '🇱🇦', proxyServers: [
-    { host: 'proxy-la-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.170', port: 8080, type: 'http' }
   ]},
   { code: 'kz', name: 'Kazakhstan', flag: '🇰🇿', proxyServers: [
-    { host: 'proxy-kz-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.171', port: 8080, type: 'http' }
   ]},
   { code: 'uz', name: 'Uzbekistan', flag: '🇺🇿', proxyServers: [
-    { host: 'proxy-uz-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.172', port: 8080, type: 'http' }
   ]},
   { code: 'sa', name: 'Saudi Arabia', flag: '🇸🇦', proxyServers: [
-    { host: 'proxy-sa-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.173', port: 8080, type: 'http' }
   ]},
   { code: 'ae', name: 'United Arab Emirates', flag: '🇦🇪', proxyServers: [
-    { host: 'proxy-ae-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.174', port: 8080, type: 'http' }
   ]},
   { code: 'il', name: 'Israel', flag: '🇮🇱', proxyServers: [
-    { host: 'proxy-il-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.175', port: 8080, type: 'http' }
   ]},
   { code: 'tr', name: 'Turkey', flag: '🇹🇷', proxyServers: [
-    { host: 'proxy-tr-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.176', port: 8080, type: 'http' }
   ]},
   { code: 'ir', name: 'Iran', flag: '🇮🇷', proxyServers: [
-    { host: 'proxy-ir-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.177', port: 8080, type: 'http' }
   ]},
   { code: 'iq', name: 'Iraq', flag: '🇮🇶', proxyServers: [
-    { host: 'proxy-iq-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.178', port: 8080, type: 'http' }
   ]},
   { code: 'jo', name: 'Jordan', flag: '🇯🇴', proxyServers: [
-    { host: 'proxy-jo-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.179', port: 8080, type: 'http' }
   ]},
   { code: 'lb', name: 'Lebanon', flag: '🇱🇧', proxyServers: [
-    { host: 'proxy-lb-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.180', port: 8080, type: 'http' }
   ]},
   { code: 'eg', name: 'Egypt', flag: '🇪🇬', proxyServers: [
-    { host: 'proxy-eg-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.181', port: 8080, type: 'http' }
   ]},
 
   // Oceania
   { code: 'au', name: 'Australia', flag: '🇦🇺', proxyServers: [
-    { host: 'proxy-au-1.example.com', port: 8080, type: 'http' },
-    { host: 'proxy-au-2.example.com', port: 3128, type: 'http' }
+    { host: '185.199.137.153', port: 8080, type: 'http' },
+    { host: '185.199.138.153', port: 3128, type: 'http' }
   ]},
   { code: 'nz', name: 'New Zealand', flag: '🇳🇿', proxyServers: [
-    { host: 'proxy-nz-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.182', port: 8080, type: 'http' }
   ]},
   { code: 'fj', name: 'Fiji', flag: '🇫🇯', proxyServers: [
-    { host: 'proxy-fj-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.183', port: 8080, type: 'http' }
   ]},
   { code: 'pg', name: 'Papua New Guinea', flag: '🇵🇬', proxyServers: [
-    { host: 'proxy-pg-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.184', port: 8080, type: 'http' }
   ]},
 
   // South America
   { code: 'br', name: 'Brazil', flag: '🇧🇷', proxyServers: [
-    { host: 'proxy-br-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.185', port: 8080, type: 'http' }
   ]},
   { code: 'ar', name: 'Argentina', flag: '🇦🇷', proxyServers: [
-    { host: 'proxy-ar-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.186', port: 8080, type: 'http' }
   ]},
   { code: 'cl', name: 'Chile', flag: '🇨🇱', proxyServers: [
-    { host: 'proxy-cl-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.187', port: 8080, type: 'http' }
   ]},
   { code: 'co', name: 'Colombia', flag: '🇨🇴', proxyServers: [
-    { host: 'proxy-co-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.188', port: 8080, type: 'http' }
   ]},
   { code: 'pe', name: 'Peru', flag: '🇵🇪', proxyServers: [
-    { host: 'proxy-pe-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.189', port: 8080, type: 'http' }
   ]},
   { code: 've', name: 'Venezuela', flag: '🇻🇪', proxyServers: [
-    { host: 'proxy-ve-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.190', port: 8080, type: 'http' }
   ]},
   { code: 'ec', name: 'Ecuador', flag: '🇪🇨', proxyServers: [
-    { host: 'proxy-ec-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.191', port: 8080, type: 'http' }
   ]},
   { code: 'uy', name: 'Uruguay', flag: '🇺🇾', proxyServers: [
-    { host: 'proxy-uy-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.192', port: 8080, type: 'http' }
   ]},
   { code: 'py', name: 'Paraguay', flag: '🇵🇾', proxyServers: [
-    { host: 'proxy-py-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.193', port: 8080, type: 'http' }
   ]},
   { code: 'bo', name: 'Bolivia', flag: '🇧🇴', proxyServers: [
-    { host: 'proxy-bo-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.194', port: 8080, type: 'http' }
   ]},
   { code: 'gy', name: 'Guyana', flag: '🇬🇾', proxyServers: [
-    { host: 'proxy-gy-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.195', port: 8080, type: 'http' }
   ]},
   { code: 'sr', name: 'Suriname', flag: '🇸🇷', proxyServers: [
-    { host: 'proxy-sr-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.196', port: 8080, type: 'http' }
   ]},
 
   // Africa
   { code: 'za', name: 'South Africa', flag: '🇿🇦', proxyServers: [
-    { host: 'proxy-za-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.197', port: 8080, type: 'http' }
   ]},
   { code: 'ng', name: 'Nigeria', flag: '🇳🇬', proxyServers: [
-    { host: 'proxy-ng-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.198', port: 8080, type: 'http' }
   ]},
   { code: 'ke', name: 'Kenya', flag: '🇰🇪', proxyServers: [
-    { host: 'proxy-ke-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.199', port: 8080, type: 'http' }
   ]},
   { code: 'gh', name: 'Ghana', flag: '🇬🇭', proxyServers: [
-    { host: 'proxy-gh-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.200', port: 8080, type: 'http' }
   ]},
   { code: 'tz', name: 'Tanzania', flag: '🇹🇿', proxyServers: [
-    { host: 'proxy-tz-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.201', port: 8080, type: 'http' }
   ]},
   { code: 'ug', name: 'Uganda', flag: '🇺🇬', proxyServers: [
-    { host: 'proxy-ug-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.202', port: 8080, type: 'http' }
   ]},
   { code: 'et', name: 'Ethiopia', flag: '🇪🇹', proxyServers: [
-    { host: 'proxy-et-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.203', port: 8080, type: 'http' }
   ]},
   { code: 'ma', name: 'Morocco', flag: '🇲🇦', proxyServers: [
-    { host: 'proxy-ma-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.204', port: 8080, type: 'http' }
   ]},
   { code: 'dz', name: 'Algeria', flag: '🇩🇿', proxyServers: [
-    { host: 'proxy-dz-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.205', port: 8080, type: 'http' }
   ]},
   { code: 'tn', name: 'Tunisia', flag: '🇹🇳', proxyServers: [
-    { host: 'proxy-tn-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.206', port: 8080, type: 'http' }
   ]},
   { code: 'ly', name: 'Libya', flag: '🇱🇾', proxyServers: [
-    { host: 'proxy-ly-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.207', port: 8080, type: 'http' }
   ]},
   { code: 'sd', name: 'Sudan', flag: '🇸🇩', proxyServers: [
-    { host: 'proxy-sd-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.208', port: 8080, type: 'http' }
   ]},
   { code: 'zw', name: 'Zimbabwe', flag: '🇿🇼', proxyServers: [
-    { host: 'proxy-zw-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.209', port: 8080, type: 'http' }
   ]},
   { code: 'zm', name: 'Zambia', flag: '🇿🇲', proxyServers: [
-    { host: 'proxy-zm-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.210', port: 8080, type: 'http' }
   ]},
   { code: 'mw', name: 'Malawi', flag: '🇲🇼', proxyServers: [
-    { host: 'proxy-mw-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.211', port: 8080, type: 'http' }
   ]},
   { code: 'mz', name: 'Mozambique', flag: '🇲🇿', proxyServers: [
-    { host: 'proxy-mz-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.212', port: 8080, type: 'http' }
   ]},
   { code: 'ao', name: 'Angola', flag: '🇦🇴', proxyServers: [
-    { host: 'proxy-ao-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.213', port: 8080, type: 'http' }
   ]},
   { code: 'cm', name: 'Cameroon', flag: '🇨🇲', proxyServers: [
-    { host: 'proxy-cm-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.214', port: 8080, type: 'http' }
   ]},
   { code: 'ci', name: 'Ivory Coast', flag: '🇨🇮', proxyServers: [
-    { host: 'proxy-ci-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.215', port: 8080, type: 'http' }
   ]},
   { code: 'sn', name: 'Senegal', flag: '🇸🇳', proxyServers: [
-    { host: 'proxy-sn-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.216', port: 8080, type: 'http' }
   ]},
   { code: 'ml', name: 'Mali', flag: '🇲🇱', proxyServers: [
-    { host: 'proxy-ml-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.217', port: 8080, type: 'http' }
   ]},
   { code: 'bf', name: 'Burkina Faso', flag: '🇧🇫', proxyServers: [
-    { host: 'proxy-bf-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.218', port: 8080, type: 'http' }
   ]},
   { code: 'ne', name: 'Niger', flag: '🇳🇪', proxyServers: [
-    { host: 'proxy-ne-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.219', port: 8080, type: 'http' }
   ]},
   { code: 'td', name: 'Chad', flag: '🇹🇩', proxyServers: [
-    { host: 'proxy-td-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.220', port: 8080, type: 'http' }
   ]},
   { code: 'so', name: 'Somalia', flag: '🇸🇴', proxyServers: [
-    { host: 'proxy-so-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.221', port: 8080, type: 'http' }
   ]},
   { code: 'er', name: 'Eritrea', flag: '🇪🇷', proxyServers: [
-    { host: 'proxy-er-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.222', port: 8080, type: 'http' }
   ]},
   { code: 'dj', name: 'Djibouti', flag: '🇩🇯', proxyServers: [
-    { host: 'proxy-dj-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.223', port: 8080, type: 'http' }
   ]},
   { code: 'mu', name: 'Mauritius', flag: '🇲🇺', proxyServers: [
-    { host: 'proxy-mu-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.224', port: 8080, type: 'http' }
   ]},
   { code: 'sc', name: 'Seychelles', flag: '🇸🇨', proxyServers: [
-    { host: 'proxy-sc-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.225', port: 8080, type: 'http' }
   ]},
   { code: 'mg', name: 'Madagascar', flag: '🇲🇬', proxyServers: [
-    { host: 'proxy-mg-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.226', port: 8080, type: 'http' }
   ]},
   { code: 're', name: 'Réunion', flag: '🇷🇪', proxyServers: [
-    { host: 'proxy-re-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.227', port: 8080, type: 'http' }
   ]},
   { code: 'bi', name: 'Burundi', flag: '🇧🇮', proxyServers: [
-    { host: 'proxy-bi-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.228', port: 8080, type: 'http' }
   ]},
   { code: 'rw', name: 'Rwanda', flag: '🇷🇼', proxyServers: [
-    { host: 'proxy-rw-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.229', port: 8080, type: 'http' }
   ]},
   { code: 'ss', name: 'South Sudan', flag: '🇸🇸', proxyServers: [
-    { host: 'proxy-ss-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.230', port: 8080, type: 'http' }
   ]},
   { code: 'cf', name: 'Central African Republic', flag: '🇨🇫', proxyServers: [
-    { host: 'proxy-cf-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.231', port: 8080, type: 'http' }
   ]},
   { code: 'cd', name: 'DR Congo', flag: '🇨🇩', proxyServers: [
-    { host: 'proxy-cd-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.232', port: 8080, type: 'http' }
   ]},
   { code: 'cg', name: 'Republic of the Congo', flag: '🇨🇬', proxyServers: [
-    { host: 'proxy-cg-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.233', port: 8080, type: 'http' }
   ]},
   { code: 'ga', name: 'Gabon', flag: '🇬🇦', proxyServers: [
-    { host: 'proxy-ga-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.234', port: 8080, type: 'http' }
   ]},
   { code: 'gq', name: 'Equatorial Guinea', flag: '🇬🇶', proxyServers: [
-    { host: 'proxy-gq-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.235', port: 8080, type: 'http' }
   ]},
   { code: 'st', name: 'São Tomé and Príncipe', flag: '🇸🇹', proxyServers: [
-    { host: 'proxy-st-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.236', port: 8080, type: 'http' }
   ]},
   { code: 'gw', name: 'Guinea-Bissau', flag: '🇬🇼', proxyServers: [
-    { host: 'proxy-gw-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.237', port: 8080, type: 'http' }
   ]},
   { code: 'gn', name: 'Guinea', flag: '🇬🇳', proxyServers: [
-    { host: 'proxy-gn-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.238', port: 8080, type: 'http' }
   ]},
   { code: 'sl', name: 'Sierra Leone', flag: '🇸🇱', proxyServers: [
-    { host: 'proxy-sl-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.239', port: 8080, type: 'http' }
   ]},
   { code: 'lr', name: 'Liberia', flag: '🇱🇷', proxyServers: [
-    { host: 'proxy-lr-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.240', port: 8080, type: 'http' }
   ]},
   { code: 'cv', name: 'Cape Verde', flag: '🇨🇻', proxyServers: [
-    { host: 'proxy-cv-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.241', port: 8080, type: 'http' }
   ]},
   { code: 'gm', name: 'Gambia', flag: '🇬🇲', proxyServers: [
-    { host: 'proxy-gm-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.242', port: 8080, type: 'http' }
   ]},
   { code: 'mr', name: 'Mauritania', flag: '🇲🇷', proxyServers: [
-    { host: 'proxy-mr-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.243', port: 8080, type: 'http' }
   ]},
   { code: 'eh', name: 'Western Sahara', flag: '🇪🇭', proxyServers: [
-    { host: 'proxy-eh-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.244', port: 8080, type: 'http' }
   ]},
   { code: 'bj', name: 'Benin', flag: '🇧🇯', proxyServers: [
-    { host: 'proxy-bj-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.245', port: 8080, type: 'http' }
   ]},
   { code: 'tg', name: 'Togo', flag: '🇹🇬', proxyServers: [
-    { host: 'proxy-tg-1.example.com', port: 8080, type: 'http' }
+    { host: '185.199.0.246', port: 8080, type: 'http' }
   ]},
 ];
 

@@ -68,7 +68,7 @@ chmod +x scripts/install_native_host.sh
 After loading the extension, update the native host manifest with your extension ID:
 
 ```bash
-./scripts/update_extension_id.sh YOUR_EXTENSION_ID
+./scripts/update_extension_id.sh  cjinfmlfnkckaejjbmphanfgdgggooji
 ```
 
 ## Development
